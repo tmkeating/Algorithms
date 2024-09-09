@@ -1,39 +1,54 @@
 def merge(left, right):
-    """Merge sort merging function."""
+    print(f'left input, right input: {left}, {right}')
+    leftIndex, rightIndex = 0, 0
+    print(f'leftIndex, rightIndex: {leftIndex}, {rightIndex}')
 
-    left_index, right_index = 0, 0
-    result = []
-    while left_index < len(left) and right_index < len(right):
-        if left[left_index] < right[right_index]:
-            result.append(left[left_index])
-            left_index += 1
+    mergedArray = []
+
+    while leftIndex < len(left) and rightIndex < len(right):
+        if left[leftIndex] <= right[rightIndex]:
+            mergedArray.append(left[leftIndex])
+            leftIndex += 1
+            print(f'Merged array left appended: {mergedArray}')
+            print(f'leftIndex, rightIndex: {leftIndex}, {rightIndex}')
         else:
-            result.append(right[right_index])
-            right_index += 1
-
-    result += left[left_index:]
-    result += right[right_index:]
-    return result
+            mergedArray.append(right[rightIndex])
+            rightIndex += 1
+            print(f'Merged array right appended: {mergedArray}')
+            print(f'leftIndex, rightIndex: {leftIndex}, {rightIndex}')
+    
+    mergedArray += left[leftIndex:]
+    print(f'Merged array += left: {mergedArray}')
+    mergedArray += right[rightIndex:]
+    print(f'Merged array +=: right: {mergedArray}')
+    return mergedArray
 
 
 def mergeSort(array):
-    """Merge sort algorithm implementation."""
-
     if len(array) <= 1:  # base case
         return array
 
-    # divide array in half and merge sort recursively
     half = len(array) // 2
+    print(f'Half: {half}')
+
     left = mergeSort(array[:half])
+    print(f'Left: {left}')
+
     right = mergeSort(array[half:])
+    print(f'Right: {right}')
 
     return merge(left, right)
 
+
+
 def main():
-    array = input("Enter an array: ")
+    array = [5,2,3,1,4,4,7]
+    # array = input("Enter an array: ")
     print(f'Entered array: {array}')
     sortedArray = mergeSort(array)
     print(f'Sorted array: {sortedArray}')
+
+
 
 if __name__ == "__main__":
     main()
