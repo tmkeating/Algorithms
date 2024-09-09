@@ -16,7 +16,7 @@ def merge(left, right):
     return result
 
 
-def merge_sort(array):
+def mergeSort(array):
     """Merge sort algorithm implementation."""
 
     if len(array) <= 1:  # base case
@@ -24,7 +24,16 @@ def merge_sort(array):
 
     # divide array in half and merge sort recursively
     half = len(array) // 2
-    left = merge_sort(array[:half])
-    right = merge_sort(array[half:])
+    left = mergeSort(array[:half])
+    right = mergeSort(array[half:])
 
     return merge(left, right)
+
+def main():
+    array = input("Enter an array: ")
+    print(f'Entered array: {array}')
+    sortedArray = mergeSort(array)
+    print(f'Sorted array: {sortedArray}')
+
+if __name__ == "__main__":
+    main()
